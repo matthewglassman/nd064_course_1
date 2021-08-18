@@ -1,5 +1,7 @@
 import sqlite3
 
+from collections import defaultdict
+
 from flask import Flask, jsonify, json, render_template, request, url_for, redirect, flash
 from werkzeug.exceptions import abort
 
@@ -75,14 +77,16 @@ def healthstatus():
 
   return response
 
-#Count number of database queries and number of posts
-database_use = {'data': {'DatabaseQueries': 15, 'Posts': 4}}
-
+#Create mock data to test metrics endpoint
+database_use = {'data':{'DatabaseQueries': 15, 'Posts': 4}}
 
 #Define metrics endpoint
 @app.route('/metrics', methods=['GET'])
 def usage():
-  response = app.response_class(response = json.dumps(database_use), status = 200, mimetype = 'application/json')
+  connection = get_db_connection()
+  posts = connection.execute('SELECT * FROM posts').fetchall()
+  connection.close()
+  response = app.response_class(response = json.dumps({'data':{"Database_Connections": counter, "number_of_posts": len(posts)}}), status = 200, mimetype = 'application/json')
 
   return response
 
