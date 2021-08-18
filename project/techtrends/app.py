@@ -5,11 +5,17 @@ from collections import defaultdict
 from flask import Flask, jsonify, json, render_template, request, url_for, redirect, flash
 from werkzeug.exceptions import abort
 
+#Global variable to hold number of times a db connection has been made.
+db_connection_counter = 0
+
 # Function to get a database connection.
 # This function connects to database with the name `database.db`
 def get_db_connection():
+  #Global variable to hold number of times a db connection has been made.
+    global db_connection_counter
     connection = sqlite3.connect('database.db')
     connection.row_factory = sqlite3.Row
+    db_connection_counter += 1
     return connection
 
 # Function to get a post using its ID
@@ -86,7 +92,7 @@ def usage():
   connection = get_db_connection()
   posts = connection.execute('SELECT * FROM posts').fetchall()
   connection.close()
-  response = app.response_class(response = json.dumps({'data':{"Database_Connections": counter, "number_of_posts": len(posts)}}), status = 200, mimetype = 'application/json')
+  response = app.response_class(response = json.dumps({'data':{"Database_Connections": db_connection_counter, "number_of_posts": len(posts)}}), status = 200, mimetype = 'application/json')
 
   return response
 
