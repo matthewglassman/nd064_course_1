@@ -65,6 +65,27 @@ def create():
 
     return render_template('create.html')
 
+#Create variable for return response status of 200 for healthz route
+health = {'result': 'OK - healthy'}
+
+#Define healthz endpoint
+@app.route('/healthz', methods=['GET'])
+def healthstatus():
+  response = app.response_class(response = json.dumps(health), status=200, mimetype='application/json')
+
+  return response
+
+#Count number of database queries and number of posts
+database_use = {'data': {'DatabaseQueries': 15, 'Posts': 4}}
+
+
+#Define metrics endpoint
+@app.route('/metrics', methods=['GET'])
+def usage():
+  response = app.response_class(response = json.dumps(database_use), status = 200, mimetype = 'application/json')
+
+  return response
+
 # start the application on port 3111
 if __name__ == "__main__":
    app.run(host='0.0.0.0', port='3111')
