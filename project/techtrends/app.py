@@ -7,6 +7,18 @@ from collections import defaultdict
 from flask import Flask, jsonify, json, render_template, request, url_for, redirect, flash
 from werkzeug.exceptions import abort
 
+#Set up logging
+
+#Set loglevel to an Environment Variable
+loglevel = os.getenv("UDACITY_APP_LOGLEVEL", "DEBUG").upper()
+
+#Set logging output type dynamically depending on loglevel condition
+loglevel = (
+    getattr(logging, loglevel)
+    if loglevel in ["CRITICAL", "DEBUG", "ERROR", "INFO", "WARNING"]
+    else logging.DEBUG
+    )
+
 #Global variable to hold number of times a db connection has been made.
 db_connection_counter = 0
 
