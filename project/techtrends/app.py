@@ -33,6 +33,10 @@ standard_error = logging.StreamHandler(sys.stderr)
 #Set the lowest threshold that gets logged to stderr
 standard_error = standard_error.setLevel(logging.ERROR)
 
+#Create formatter to apply to handlers
+formatter = logging.Formatter('%(asctime)s:%(levelname)s:%(name)s:%(threadName)s:%(message)s')
+
+
 #Global variable to hold number of times a db connection has been made.
 db_connection_counter = 0
 
