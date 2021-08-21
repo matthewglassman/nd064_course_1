@@ -33,6 +33,7 @@ standard_error = logging.StreamHandler(sys.stderr)
 #Set the lowest threshold that gets logged to stderr
 standard_error = standard_error.setLevel(logging.ERROR)
 
+handlers = [standard_out, standard_error]
 
 #Global variable to hold number of times a db connection has been made.
 db_connection_counter = 0
