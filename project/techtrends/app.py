@@ -34,7 +34,11 @@ standard_error = logging.StreamHandler(sys.stderr)
 standard_error = standard_error.setLevel(logging.ERROR)
 
 #Create formatter to apply to handlers
-formatter = logging.Formatter('%(asctime)s:%(levelname)s:%(name)s:%(threadName)s:%(message)s')
+format_output = logging.Formatter('%(asctime)s:%(levelname)s:%(name)s:%(threadName)s:%(message)s')
+
+#Assign the formatting to the handlers
+standard_out.setFormatter(format_output)
+standard_error.setFormatter(format_output)
 
 
 #Global variable to hold number of times a db connection has been made.
