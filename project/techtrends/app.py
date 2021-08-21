@@ -44,6 +44,9 @@ standard_error.setFormatter(format_output)
 outlog = logging.getLogger('standardout.logger')
 errlog = logging.getLogger('standarderror.logger')
 
+#Add handlers to loggers
+logging.getLogger(outlog).addHandler(standard_out)
+logging.getLogger(errlog).addHandler(standard_error)
 
 #Global variable to hold number of times a db connection has been made.
 db_connection_counter = 0
