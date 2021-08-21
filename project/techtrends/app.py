@@ -25,13 +25,13 @@ loglevel = (
 standard_out = logging.StreamHandler(sys.stdout)
 
 #Set the lowest threshold that gets logged to stdout
-standard_out = setLevel(loglevel)
+standard_out = standard_out.setLevel(loglevel)
 
 #Assign logging stream handler for redirection to stderr
 standard_error = logging.StreamHandler(sys.stderr)
 
 #Set the lowest threshold that gets logged to stderr
-standard_error = setLevel(logging.ERROR)
+standard_error = standard_error.setLevel(logging.ERROR)
 
 #Global variable to hold number of times a db connection has been made.
 db_connection_counter = 0
