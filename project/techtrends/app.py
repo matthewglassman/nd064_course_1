@@ -20,12 +20,17 @@ loglevel = (
     )
 
 #Create handlers to determine which logging goes to stdout and stderr
-#Assign Logging Stream Handler for redirection to stdout
+#Assign logging stream handler for redirection to stdout
 standard_out = logging.StreamHandler(sys.stout)
 
-#Set the lowest threshold that gets set to stdout
+#Set the lowest threshold that gets logged to stdout
 standard_out = setLevel(loglevel)
 
+#Assign logging stream handler for redirection to stderr
+standard_error = logging.StreamHandler(sys.sterr)
+
+#Set the lowest threshold that gets logged to stderr
+standard_error = setLevel(logging.ERROR)
 
 #Global variable to hold number of times a db connection has been made.
 db_connection_counter = 0
