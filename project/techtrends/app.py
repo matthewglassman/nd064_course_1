@@ -21,13 +21,13 @@ loglevel = (
 
 #Create handlers to determine which logging goes to stdout and stderr
 #Assign logging stream handler for redirection to stdout
-standard_out = logging.StreamHandler(sys.stout)
+standard_out = logging.StreamHandler(sys.stdout)
 
 #Set the lowest threshold that gets logged to stdout
 standard_out = setLevel(loglevel)
 
 #Assign logging stream handler for redirection to stderr
-standard_error = logging.StreamHandler(sys.sterr)
+standard_error = logging.StreamHandler(sys.stderr)
 
 #Set the lowest threshold that gets logged to stderr
 standard_error = setLevel(logging.ERROR)
