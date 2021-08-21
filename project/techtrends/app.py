@@ -40,6 +40,10 @@ format_output = logging.Formatter('%(asctime)s:%(levelname)s:%(name)s:%(threadNa
 standard_out.setFormatter(format_output)
 standard_error.setFormatter(format_output)
 
+#Define a logger
+outlog = logging.getLogger('standardout.logger')
+errlog = logging.getLogger('standarderror.logger')
+
 
 #Global variable to hold number of times a db connection has been made.
 db_connection_counter = 0
