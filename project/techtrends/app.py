@@ -35,6 +35,11 @@ standard_error = standard_error.setLevel(logging.ERROR)
 
 handlers = [standard_out, standard_error]
 
+#Assign logging defaults
+logging.basicConfig(level = logging.DEBUG,
+    format = '%(levelname)s:%(name)s - - %(asctime)s: %(message)s',
+    handlers=handlers)
+
 #Global variable to hold number of times a db connection has been made.
 db_connection_counter = 0
 
