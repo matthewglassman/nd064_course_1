@@ -25,13 +25,13 @@ loglevel = (
 standard_out = logging.StreamHandler(sys.stdout)
 
 #Set the lowest threshold that gets logged to stdout
-standard_out = standard_out.setLevel(loglevel)
+standard_out.setLevel(loglevel)
 
 #Assign logging stream handler for redirection to stderr
 standard_error = logging.StreamHandler(sys.stderr)
 
 #Set the lowest threshold that gets logged to stderr
-standard_error = standard_error.setLevel(logging.ERROR)
+standard_error.setLevel(logging.ERROR)
 
 handlers = [standard_out, standard_error]
 
@@ -80,8 +80,9 @@ def post(post_id):
     post = get_post(post_id)
     if post is None:
       return render_template('404.html'), 404
-      app.logger.info("{} is not found".format(post))
+      app.logger.info("Nothing to see here.")
     else:
+      app.logger.info("{} was retrieved.".format(post['title']))  
       return render_template('post.html', post=post)
 
 # Define the About Us page
@@ -105,6 +106,8 @@ def create():
                          (title, content))
             connection.commit()
             connection.close()
+
+            app.logger.info("{title} has been created".format(title = title))
 
             return redirect(url_for('index'))
 
