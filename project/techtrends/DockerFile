@@ -1,0 +1,6 @@
+FROM python:2.7
+COPY . /DockerTechTrends
+WOKRDIR /DockerTechTrends
+RUN pip install -r requirements.txt
+EXPOSE 3111
+CMD ["pyhon", "app.py"]
