@@ -8,37 +8,37 @@ from collections import defaultdict
 from flask import Flask, jsonify, json, render_template, request, url_for, redirect, flash
 from werkzeug.exceptions import abort
 
-#Set up logging
+# #Set up logging
 
-#Set loglevel to an Environment Variable
-loglevel = os.getenv("UDACITY_APP_LOGLEVEL", "DEBUG").upper()
+# #Set loglevel to an Environment Variable
+# loglevel = os.getenv("UDACITY_APP_LOGLEVEL", "DEBUG").upper()
 
-#Set logging output type dynamically depending on loglevel condition
-loglevel = (
-    getattr(logging, loglevel)
-    if loglevel in ["CRITICAL", "DEBUG", "ERROR", "INFO", "WARNING"]
-    else logging.DEBUG
-    )
+# #Set logging output type dynamically depending on loglevel condition
+# loglevel = (
+#     getattr(logging, loglevel)
+#     if loglevel in ["CRITICAL", "DEBUG", "ERROR", "INFO", "WARNING"]
+#     else logging.DEBUG
+#     )
 
-#Create handlers to determine which logging goes to stdout and stderr
-#Assign logging stream handler for redirection to stdout
-standard_out = logging.StreamHandler(sys.stdout)
+# #Create handlers to determine which logging goes to stdout and stderr
+# #Assign logging stream handler for redirection to stdout
+# standard_out = logging.StreamHandler(sys.stdout)
 
-#Set the lowest threshold that gets logged to stdout
-standard_out.setLevel(loglevel)
+# #Set the lowest threshold that gets logged to stdout
+# standard_out.setLevel(loglevel)
 
-#Assign logging stream handler for redirection to stderr
-standard_error = logging.StreamHandler(sys.stderr)
+# #Assign logging stream handler for redirection to stderr
+# standard_error = logging.StreamHandler(sys.stderr)
 
-#Set the lowest threshold that gets logged to stderr
-standard_error.setLevel(logging.ERROR)
+# #Set the lowest threshold that gets logged to stderr
+# standard_error.setLevel(logging.ERROR)
 
-handlers = [standard_out, standard_error]
+# handlers = [standard_out, standard_error]
 
-#Assign logging defaults
-logging.basicConfig(level = logging.DEBUG,
-    format = '%(levelname)s:%(name)s - - %(asctime)s: %(message)s',
-    handlers=handlers)
+# #Assign logging defaults
+# logging.basicConfig(level = logging.DEBUG,
+#     format = '%(levelname)s:%(name)s - - %(asctime)s: %(message)s',
+#     handlers=handlers)
 
 #Global variable to hold number of times a db connection has been made.
 db_connection_counter = 0
@@ -79,8 +79,8 @@ def index():
 def post(post_id):
     post = get_post(post_id)
     if post is None:
-      return render_template('404.html'), 404
-      app.logger.info("Nothing to see here.")
+        app.logger.error("Article {} is not found".format(post_id))
+        return render_template('404.html'), 404
     else:
       app.logger.info("{} was retrieved.".format(post['title']))  
       return render_template('post.html', post=post)
@@ -138,4 +138,44 @@ def usage():
 
 # start the application on port 3111
 if __name__ == "__main__":
-   app.run(host='0.0.0.0', port='3111')
+    #Set up logging
+    logger = logging.getLogger('udacity_app_logger')
+
+    #Set loglevel to an Environment Variable
+    loglevel = os.getenv("UDACITY_APP_LOGLEVEL", "DEBUG").upper()
+
+    #Set logging output type dynamically depending on loglevel condition
+    loglevel = (
+        getattr(logging, loglevel)
+        if loglevel in ["CRITICAL", "DEBUG", "ERROR", "INFO", "WARNING"]
+        else logging.DEBUG
+        )
+
+    #Create handlers to determine which logging goes to stdout and stderr
+    #Assign logging stream handler for redirection to stdout
+    standard_out = logging.StreamHandler(sys.stdout)
+
+    #Set the lowest threshold that gets logged to stdout
+    standard_out.setLevel(loglevel)
+
+    #Assign logging stream handler for redirection to stderr
+    standard_error = logging.StreamHandler(sys.stderr)
+
+    #Set the lowest threshold that gets logged to stderr
+    standard_error.setLevel(logging.ERROR)
+
+    #format output
+
+    output_format = logging.Formatter('%(levelname)s:%(name)s - - %(asctime)s: %(message)s')
+
+    #Add handlers to our logger
+    logger.addHandler(standard_out)
+    logger.addHandler(standard_error)
+
+    handlers = [standard_out, standard_error]
+
+    #Assign logging defaults
+    logging.basicConfig(level = logging.DEBUG,
+        format = '%(levelname)s:%(name)s - - %(asctime)s: %(message)s',
+        handlers=handlers)
+    app.run(host='0.0.0.0', port='3111')
