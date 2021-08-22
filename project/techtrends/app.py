@@ -80,12 +80,14 @@ def post(post_id):
     post = get_post(post_id)
     if post is None:
       return render_template('404.html'), 404
+      app.logger.info("{} is not found".format(post))
     else:
       return render_template('post.html', post=post)
 
 # Define the About Us page
 @app.route('/about')
 def about():
+    app.logger.info("The About Us page has been retrieved")
     return render_template('about.html')
 
 # Define the post creation functionality 
