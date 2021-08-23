@@ -8,6 +8,37 @@ docker run -d -p 7111:3111 techtrends
 
 ## Docker commands used to get the application logs
 # TODO: insert the docker logs command
+docker logs dreamy_mendel
+
 
 ## Logs from the container running the TechTrends application
 # TODO: paste logs from the Docker container 
+* Serving Flask app "app" (lazy loading)
+  * Environment: production
+    WARNING: This is a development server. Do not use it in a production deployment.
+    Use a production WSGI server instead.
+  * Debug mode: off
+ INFO:werkzeug - - 2021-08-23 16:38:45,931:  * Running on http://0.0.0.0:3111/ (Press CTRL+C to quit)
+ INFO:werkzeug - - 2021-08-23 16:39:16,419: 172.17.0.1 - - [23/Aug/2021 16:39:16] "GET / HTTP/1.1" 200 -
+ INFO:werkzeug - - 2021-08-23 16:39:16,601: 172.17.0.1 - - [23/Aug/2021 16:39:16] "GET /static/css/main.css HTTP/1.1" 200 -
+ INFO:werkzeug - - 2021-08-23 16:39:16,756: 172.17.0.1 - - [23/Aug/2021 16:39:16] "GET /favicon.ico HTTP/1.1" 404 -
+ INFO:app - - 2021-08-23 16:45:39,152: 2020 CNCF Annual Report was retrieved.
+ INFO:werkzeug - - 2021-08-23 16:45:39,157: 172.17.0.1 - - [23/Aug/2021 16:45:39] "GET /1 HTTP/1.1" 200 -
+ INFO:app - - 2021-08-23 16:53:14,849: 2020 CNCF Annual Report was retrieved.
+ INFO:werkzeug - - 2021-08-23 16:53:14,850: 172.17.0.1 - - [23/Aug/2021 16:53:14] "GET /1 HTTP/1.1" 200 -
+ INFO:app - - 2021-08-23 16:53:17,372: The About Us page has been retrieved
+ INFO:werkzeug - - 2021-08-23 16:53:17,375: 172.17.0.1 - - [23/Aug/2021 16:53:17] "GET /about HTTP/1.1" 200 -
+ INFO:werkzeug - - 2021-08-23 16:53:26,160: 172.17.0.1 - - [23/Aug/2021 16:53:26] "GET /healthz HTTP/1.1" 200 -
+ INFO:werkzeug - - 2021-08-23 16:53:34,084: 172.17.0.1 - - [23/Aug/2021 16:53:34] "GET /metrics HTTP/1.1" 200 -
+ INFO:werkzeug - - 2021-08-23 16:53:41,995: 172.17.0.1 - - [23/Aug/2021 16:53:41] "GET / HTTP/1.1" 200 -
+ INFO:werkzeug - - 2021-08-23 16:53:44,279: 172.17.0.1 - - [23/Aug/2021 16:53:44] "GET /create HTTP/1.1" 200 -
+ INFO:app - - 2021-08-23 16:54:30,127: Testing Local Containerization has been created
+ INFO:werkzeug - - 2021-08-23 16:54:30,130: 172.17.0.1 - - [23/Aug/2021 16:54:30] "POST /create HTTP/1.1" 302 -
+ INFO:werkzeug - - 2021-08-23 16:54:30,149: 172.17.0.1 - - [23/Aug/2021 16:54:30] "GET / HTTP/1.1" 200 -
+ INFO:app - - 2021-08-23 16:54:33,933: Testing Local Containerization was retrieved.
+ INFO:werkzeug - - 2021-08-23 16:54:33,935: 172.17.0.1 - - [23/Aug/2021 16:54:33] "GET /7 HTTP/1.1" 200 -
+ INFO:werkzeug - - 2021-08-23 16:54:37,544: 172.17.0.1 - - [23/Aug/2021 16:54:37] "GET / HTTP/1.1" 200 -
+ ERROR:app - - 2021-08-23 19:19:10,379: Article 8 is not found
+ INFO:werkzeug - - 2021-08-23 19:19:10,383: 172.17.0.1 - - [23/Aug/2021 19:19:10] "GET /8 HTTP/1.1" 404 -
+ INFO:werkzeug - - 2021-08-23 19:19:13,746: 172.17.0.1 - - [23/Aug/2021 19:19:13] "GET / HTTP/1.1" 200 -
+
