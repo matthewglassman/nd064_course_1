@@ -4,4 +4,4 @@ WORKDIR /DockerTechTrends
 RUN pip install -r requirements.txt
 RUN python init_db.py
 EXPOSE 3111
-CMD ["pyhon", "app.py"]
+CMD ["python", "app.py"]
