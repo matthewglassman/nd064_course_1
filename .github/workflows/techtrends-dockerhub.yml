@@ -5,3 +5,11 @@ name: TechTrends - Package with Docker
 on:
   push:
     branches: [ main ]
+
+#Workflow with one job
+jobs:
+  #There is one job called build that will be run on latest ubuntu
+  build:
+    runs-on: ubuntu-latest
+
+    
