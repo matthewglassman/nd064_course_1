@@ -12,4 +12,18 @@ jobs:
   build:
     runs-on: ubuntu-latest
 
-    
+    #Sequences of steps to perform for the job
+    steps:
+      -
+        name: Checkout
+        uses: actions/checkout@v2
+
+      -
+        name: Set up QEMU
+        uses: docker/setup-qemu-action@v1
+
+      -
+        name: Login to DockerHub
+        uses: docker/login-action@v1
+        with:
+          username: 
