@@ -1,1 +1,7 @@
 name: TechTrends - Package with Docker
+
+#Determines when the action will run. Triggers the workflows on a push
+#event only on the main branch
+on:
+  push:
+    branches: [ main ]
