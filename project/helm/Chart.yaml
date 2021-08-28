@@ -1,0 +1,8 @@
+apiVersion: v1
+name: techtrends
+description: Helm Chart for techtrends flask application
+keywords:
+- techtrends
+version: 1.0.0
+maintainers:
+- name: matthewglassman
